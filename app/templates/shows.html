@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+
+{% block contenido %} 
+
+    {% include 'menu.html' %}
+    
+
+    <div class="row mt-5">
+
+        <div class="col-sm-12 col-lg-8 offset-lg-2">
+            <h3>All Shows {{variable}}</h3>
+            <table class="table table-vino table-striped table-bordered table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Network</th>
+                        <th>Realese Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for tvs in programas_tv %}
+                    <tr>
+                        <td>{{tvs.id}}</td>
+                        <td>{{tvs.title}}</td>
+                        <td>{{tvs.network}}</td>
+                        <td>{{tvs.release_date|date:"F j, Y "}}</td>
+                        <td><a class="badge bg-primary text-decoration-none" href="#">Show</a> - <a class="badge bg-warning text-decoration-none" href="#">Edit</a> - <a class="badge bg-danger text-decoration-none" href="#">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+
+            </table>
+            <a class="btn btn-vino" href="/shows/new" >Add New Show</a>
+            <a class="btn btn-info" href="/reportes/shows/" target="_blank" >Imprimir Reporte en PDF</a>
+            <a class="btn btn-dark" href="/excel/shows/" target="_blank" >Exportar Excel</a>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

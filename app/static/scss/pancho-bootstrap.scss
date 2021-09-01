@@ -1,0 +1,53 @@
+// Required
+@import "../lib/bootstrap/scss/functions";
+@import "../lib/bootstrap/scss/variables";
+@import "../lib/bootstrap/scss/mixins";
+@import "../lib/bootstrap/scss/root";
+
+$navbar-padding-y:                  $spacer * .1;
+
+$enable-shadows  : true;
+
+$warning : rgb(206, 218, 47);
+$danger : rgb(238, 103, 79);
+$primary : #2f7fff;
+
+
+
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $indigo-500,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+);
+
+
+// Create your own map
+$custom-colors: (
+    "vino": #900
+);
+
+$table-variants: (
+    "primary":    shift-color($primary, $table-bg-scale),
+    "secondary":  shift-color($secondary, $table-bg-scale),
+    "success":    shift-color($success, $table-bg-scale),
+    "info":       shift-color($info, $table-bg-scale),
+    "warning":    shift-color($warning, $table-bg-scale),
+    "danger":     shift-color($danger, $table-bg-scale),
+    "light":      $light,
+    "dark":       $dark,
+    "vino":     shift-color(#900,-95%)
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+
+@import "../lib/bootstrap/scss/bootstrap";
